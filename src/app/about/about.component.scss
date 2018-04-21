@@ -1,0 +1,14 @@
+img {
+  border-radius: 50%;
+  float: left;
+  width: 50px;
+}
+
+#description
+{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+  overflow: hidden
+}
+
