@@ -43,6 +43,24 @@
             <span>-- {{item.author}} {{item.date | date}}</span>
         </mat-list-item>
       </mat-list>
+      <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+        <p>
+        <mat-form-field>
+          <input matInput placeholder="Name">
+        </mat-form-field>
+        </p>
+        <p>
+        <mat-slider tickInterval="1" thumbLabel min="0" max="5"></mat-slider>
+        </p>
+        <p>
+        <mat-form-field>
+          <textarea rows=12 matInput placeholder="Your Comment"></textarea>
+        </mat-form-field>
+        </p>
+        <p>
+        <button color="primary" mat-raised-button>Submit</button>
+        </p>
+      </form>
     </div>
   </div>
   <div [hidden]="dish">

@@ -4,6 +4,7 @@ import { DishService} from '../../services/dish.service';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
+import {FormGroup} from '@angular/forms';
 
 
 @Component({
@@ -14,6 +15,7 @@ import 'rxjs/add/operator/switchMap';
 
 export class DishdetailComponent implements OnInit {
   @Input()
+  commentForm: FormGroup;
   dish: Dish;
   dishIds: number[];
   prev: number;
