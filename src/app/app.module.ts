@@ -23,6 +23,9 @@ import { LoginComponent } from './login/login.component';
 import {MatDialogModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     AppRoutingModule,
     MatDialogModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ReactiveFormsModule,
+    MatSlideToggleModule,
+    MatSelectModule
   ],
   entryComponents: [
     LoginComponent

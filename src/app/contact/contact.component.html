@@ -2,12 +2,66 @@
      fxLayout="column"
      fxLayoutGap="10px">
 
-  <div fxFlex>
-    <div>
-      <h3>Contact Us</h3>
-      <hr>
-    </div>
+  <div fxFlex fxFlexOffset="20px" class="form-size">
+    <h3>Send us your Feedback</h3>
+    <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
+
+    <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-input-container class="half-width" dividerColor="{{(feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched) ? 'warn' : 'primary'}}">
+          <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
+          <mat-hint>
+                <span [hidden]="!(feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched)">
+                  firstname is required</span>
+          </mat-hint>
+        </mat-input-container>
+        <mat-input-container class="half-width" dividerColor="{{(feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched) ? 'warn' : 'primary'}}">
+          <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
+          <mat-hint>
+                <span [hidden]="!(feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched)">
+                  lastname is required</span>
+          </mat-hint>
+        </mat-input-container>
+      </p>
+      <p>
+        <mat-input-container class="half-width" dividerColor="{{(feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').touched) ? 'warn' : 'primary'}}">
+          <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" required>
+          <mat-hint>
+                <span [hidden]="!(feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').touched)">
+                  Tel. number is required</span>
+          </mat-hint>
+        </mat-input-container>
+        <mat-input-container class="half-width" dividerColor="{{(feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched) ? 'warn' : 'primary'}}">
+          <input matInput formControlName="email" placeholder="Email" type="email" required>
+          <mat-hint>
+                <span [hidden]="!(feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched)">
+                  Email ID is required</span>
+          </mat-hint>
+        </mat-input-container>
+      </p>
+      <table class="form-size">
+        <td>
+          <mat-slide-toggle formControlName="agree">May we contact you?</mat-slide-toggle>
+        </td>
+        <td>
+          <mat-form-field>
+            <mat-select placeholder="How?" formControlName="contacttype">
+             <mat-option *ngFor="let ctype of contactType" [value]="ctype">
+               {{ ctype }}
+             </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </table>
+      <p>
+        <mat-input-container class="full-width">
+          <textarea matInput formControlName="message" placeholder="Your Feedback" rows=12></textarea>
+        </mat-input-container>
+      </p>
+      <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
+    </form>
   </div>
+
 
   <div fxFlex>
     <h3>Location Information</h3>
