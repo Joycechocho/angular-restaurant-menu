@@ -8,34 +8,34 @@
 
     <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
       <p>
-        <mat-input-container class="half-width" dividerColor="{{(feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched) ? 'warn' : 'primary'}}">
+        <mat-input-container class="half-width" dividerColor="{{(formErrors.firstname) ? 'warn' : 'primary'}}">
           <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
           <mat-hint>
-                <span [hidden]="!(feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched)">
-                  firstname is required</span>
+                <span [hidden]="!(formErrors.firstname)">
+                  {{formErrors.firstname}}</span>
           </mat-hint>
         </mat-input-container>
-        <mat-input-container class="half-width" dividerColor="{{(feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched) ? 'warn' : 'primary'}}">
+        <mat-input-container class="half-width" dividerColor="{{(formErrors.lastname) ? 'warn' : 'primary'}}">
           <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
           <mat-hint>
-                <span [hidden]="!(feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched)">
-                  lastname is required</span>
+                <span [hidden]="!(formErrors.lastname)">
+                  {{formErrors.lastname}}</span>
           </mat-hint>
         </mat-input-container>
       </p>
       <p>
-        <mat-input-container class="half-width" dividerColor="{{(feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').touched) ? 'warn' : 'primary'}}">
-          <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" required>
+        <mat-input-container class="half-width" dividerColor="{{(formErrors.telnum) ? 'warn' : 'primary'}}">
+          <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" pattern="[0-9]*" required>
           <mat-hint>
-                <span [hidden]="!(feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').touched)">
-                  Tel. number is required</span>
+                <span [hidden]="!(formErrors.telnum)">
+                  {{formErrors.telnum}}</span>
           </mat-hint>
         </mat-input-container>
-        <mat-input-container class="half-width" dividerColor="{{(feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched) ? 'warn' : 'primary'}}">
-          <input matInput formControlName="email" placeholder="Email" type="email" required>
+        <mat-input-container class="half-width" dividerColor="{{(formErrors.email) ? 'warn' : 'primary'}}">
+          <input matInput formControlName="email" placeholder="Email" type="email" email required>
           <mat-hint>
-                <span [hidden]="!(feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched)">
-                  Email ID is required</span>
+                <span [hidden]="!(formErrors.email)">
+                  {{formErrors.email}}</span>
           </mat-hint>
         </mat-input-container>
       </p>
@@ -44,13 +44,12 @@
           <mat-slide-toggle formControlName="agree">May we contact you?</mat-slide-toggle>
         </td>
         <td>
-          <mat-form-field>
-            <mat-select placeholder="How?" formControlName="contacttype">
-             <mat-option *ngFor="let ctype of contactType" [value]="ctype">
-               {{ ctype }}
-             </mat-option>
-            </mat-select>
-          </mat-form-field>
+          How?
+          <mat-select placeholder="How?" formControlName="contacttype">
+            <mat-option *ngFor="let ctype of contactType" [value]="ctype">
+              {{ ctype }}
+            </mat-option>
+          </mat-select>
         </td>
       </table>
       <p>
