@@ -44,8 +44,8 @@
         </mat-list-item>
       </mat-list>
       <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
-        <!--<p>{{ commentForm.value | json }} {{ commentForm.status | json }}</p>-->
-        <mat-list>
+        <!--Preview Comments-->
+        <mat-list *ngIf="commentForm.valid">
           <mat-list-item>
             <p matLine>
               <span>{{commentForm.value.comment}}</span><br>
@@ -53,6 +53,7 @@
               <span>-- {{commentForm.value.author}}</span>
           </mat-list-item>
         </mat-list>
+        <!--User Input-->
         <p>
         <mat-form-field dividerColor="{{(formErrors.author) ? 'warn' : 'primary'}}">
           <input matInput formControlName="author" placeholder="Name" required>

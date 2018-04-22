@@ -77,12 +77,21 @@ export class DishdetailComponent implements OnInit {
 
   onSubmit() {
     this.comment = this.commentForm.value;
+    const id = +this.route.snapshot.params['id'];
+    const d = new Date();
+    const n = d.toISOString();
     console.log(this.comment);
     this.commentForm.reset({
       author: '',
-      rating: '',
+      rating: 5,
       comment: '',
     });
+    this.dishservice.getDish(id).subscribe(dish => {
+        this.dish = dish;
+        const json = this.dish.comments;
+        json.push(<Comment>{'author': this.comment.author, 'comment': this.comment.comment, 'rating': this.comment.rating, 'date': n } );
+      }
+    );
   }
 
   onValueChanged(data?: any) {
