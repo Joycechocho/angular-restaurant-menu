@@ -30,6 +30,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSliderModule} from '@angular/material/slider';
 import {ProcessHttpmsgService} from './services/process-httpmsg.service';
+import { RestangularModule, Restangular } from 'ngx-restangular';
+import { RestangularConfigFactory } from './shared/restConfig';
 
 
 import { baseURL } from './shared/baseurl';
@@ -62,7 +64,8 @@ import { baseURL } from './shared/baseurl';
     MatSelectModule,
     MatProgressSpinnerModule,
     MatSliderModule,
-    HttpModule
+    HttpModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
   ],
   entryComponents: [
     LoginComponent
