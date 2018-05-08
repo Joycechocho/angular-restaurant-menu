@@ -22,6 +22,7 @@ export class DishdetailComponent implements OnInit {
   prev: number;
   next: number;
   errMess: string;
+  dishcopy = null;
   formErrors = {
     'author': '',
     'rating': '',
@@ -52,8 +53,9 @@ export class DishdetailComponent implements OnInit {
     this.dishservice.getDish(id).subscribe(dish => this.dish = dish);
     this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params
-      .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
-      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); }, errmess => this.errMess = <any>errmess);
+      .switchMap((params: Params) => { return this.dishservice.getDish(+params['id']); })
+      .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); },
+        errmess => { this.dish = null; this.errMess = <any>errmess; });
   }
   goBack(): void {
     this.location.back();
@@ -93,6 +95,9 @@ export class DishdetailComponent implements OnInit {
         json.push(<Comment>{'author': this.comment.author, 'comment': this.comment.comment, 'rating': this.comment.rating, 'date': n } );
       }
     );
+    this.dishcopy.comments.push(this.comment);
+    this.dishcopy.save()
+      .subscribe(dish => { this.dish = dish; console.log(this.dish); });
   }
 
   onValueChanged(data?: any) {
